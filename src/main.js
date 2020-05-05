@@ -49,7 +49,7 @@ function updateUI() {
     Array.from(document.querySelectorAll('.sign-in')).map(it => it.style = 'display: block;');
   } else {
     Array.from(document.querySelectorAll('.after-sign-in')).map(it => it.style = 'display: block;');
-    contract.get_num().then(count => {
+    contract.get_num({"account": window.walletConnection.getAccountId()}).then(count => {
       document.querySelector('#show').classList.replace('loader','number');
       document.querySelector('#show').innerText = count === undefined ? 'calculating...' : count;
       document.querySelector('#left').classList.toggle('eye');
@@ -108,5 +108,5 @@ document.querySelector('.sign-out .btn').addEventListener('click', () => {
 });
 
 window.nearInitPromise = connect(nearConfig)
-    .then(updateUI)
-    .catch(console.error);
+  .then(updateUI)
+  .catch(console.error);

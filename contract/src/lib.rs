@@ -9,38 +9,76 @@
 //! [reset]: struct.Counter.html#method.reset
 
 use borsh::{BorshDeserialize, BorshSerialize};
-use near_sdk::{env, near_bindgen};
+// note the custom type AccountId, which is essentially a String
+// to see the other types visit the link below and select the version if needed:
+//   https://docs.rs/near-vm-logic/0.8.0/near_vm_logic/types/index.html
+use near_sdk::{AccountId, env, near_bindgen};
+use near_sdk::collections::Map;
 
 #[global_allocator]
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 // add the following attributes to prepare your code for serialization and invocation on the blockchain
-// More built-in Rust attributes here: https://doc.rust-lang.org/reference/attributes.html#built-in-attributes-index
+// more built-in Rust attributes here: https://doc.rust-lang.org/reference/attributes.html#built-in-attributes-index
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize)]
 pub struct Counter {
-    // See more data types at https://doc.rust-lang.org/book/ch03-02-data-types.html
-    val: i8, // i8 is signed. unsigned integers are also available: u8, u16, u32, u64, u128
+    // see more data types at https://doc.rust-lang.org/book/ch03-02-data-types.html
+    // see performant data structures (like Map) here:
+    //   https://github.com/near/near-sdk-rs/tree/master/near-sdk/src/collections
+    user_counters: Map<AccountId, i8>,
 }
 
 #[near_bindgen]
 impl Counter {
-    /// Returns 8-bit signed integer of the counter value.
+    /// Init attribute used for instantiation.
+    #[init]
+    pub fn new() -> Self {
+        // useful snippet to copy/paste, making sure state isn't already initialized
+        assert!(env::state_read::<Self>().is_none(), "Already initialized");
+        // notice we've chosen to use an implicit "return" here
+        Self {
+            user_counters: Map::new(b"my id which is super unique".to_vec()),
+        }
+    }
+
+    /// Returns 8-bit signed integer representing the number for the account argument.
     ///
-    /// This must match the type from our struct's 'val' defined above.
-    ///
-    /// Note, the parameter is `&self` (without being mutable) meaning it doesn't modify state.
+    /// Note, the parameter is &self (without being mutable) meaning it doesn't modify state.
     /// In the frontend (/src/main.js) this is added to the "viewMethods" array
     /// using near-shell we can call this by:
     ///
     /// ```bash
-    /// near view counter.YOU.testnet get_num
+    /// near view counter.YOU.testnet get_num '{"account": "donation.YOU.testnet"}'
     /// ```
-    pub fn get_num(&self) -> i8 {
-        return self.val;
+    pub fn get_num(&self, account: AccountId) -> i8 {
+        // call our first private function
+        // try removing the .clone() below and note the error. this may happen from time to time
+        // (learn more about Rust ownership later: https://doc.rust-lang.org/nomicon/ownership.html)
+        let caller_num = self.get_num_from_signer(account.clone());
+
+        // here's a way to format multiple variables in order to log them
+        let log_message = format!("{}'s number: {}", account, caller_num);
+        env::log(log_message.as_bytes());
+        // notice we've chosen to use an implicit "return" here
+        caller_num
     }
 
-    /// Increment the counter.
+    // our first private functions
+    fn get_num_from_signer(&self, account: AccountId) -> i8 {
+        // notice we've chosen to use an implicit "return" here
+        match self.user_counters.get(&account) {
+            Some(num) => {
+                // found account user in map, return the number
+                num
+            },
+            // did not find the account in the map
+            // note: curly brackets after arrow are optional in simple cases, like other languages
+            None => 0
+        }
+    }
+
+    /// Increment the counter *per account* that calls it.
     ///
     /// Note, the parameter is "&mut self" as this function modifies state.
     /// In the frontend (/src/main.js) this is added to the "changeMethods" array
@@ -52,13 +90,20 @@ impl Counter {
     pub fn increment(&mut self) {
         // note: adding one like this is an easy way to accidentally overflow
         // real smart contracts will want to have safety checks
-        self.val += 1;
-        let log_message = format!("Increased number to {}", self.val);
+        let caller = env::signer_account_id();
+        let current_val = match self.user_counters.get(&caller) {
+            Some(val) => val,
+            None => 0i8
+        };
+        let new_value = current_val + 1;
+        self.user_counters.insert(&caller.clone(), &new_value);
+
+        let log_message = format!("Incremented to {}", new_value);
         env::log(log_message.as_bytes());
         after_counter_change();
     }
 
-    /// Decrement (subtract from) the counter.
+    /// Decrement (subtract from) the counter *per account* that calls it.
     ///
     /// In (/src/main.js) this is also added to the "changeMethods" array
     /// using near-shell we can call this by:
@@ -69,16 +114,25 @@ impl Counter {
     pub fn decrement(&mut self) {
         // note: subtracting one like this is an easy way to accidentally overflow
         // real smart contracts will want to have safety checks
-        self.val -= 1;
-        let log_message = format!("Decreased number to {}", self.val);
+        let caller = env::signer_account_id();
+        let current_val = match self.user_counters.get(&caller) {
+            Some(val) => val,
+            None => 0i8
+        };
+        let new_value = current_val - 1;
+        self.user_counters.insert(&caller.clone(), &new_value);
+
+        let log_message = format!("Decreased number to {}", new_value);
         env::log(log_message.as_bytes());
         after_counter_change();
     }
 
     /// Reset to zero.
     pub fn reset(&mut self) {
-        self.val = 0;
-        // Another way to log is to cast a string into bytes, hence "b" below:
+        let caller = env::signer_account_id();
+        // 0 casted as i8 data type is "0i8"
+        self.user_counters.insert(&caller, &0i8);
+        // Another way to log on NEAR is to cast a string into bytes, hence "b" below:
         env::log(b"Reset counter to zero");
     }
 }
@@ -88,14 +142,13 @@ impl Counter {
 // while this function cannot be invoked directly on the blockchain, it can be called from an invoked function
 fn after_counter_change() {
     // show helpful warning that i8 (8-bit signed integer) will overflow above 127 or below -128
-    env::log("Make sure you don't overflow, my friend.".as_bytes());
+    env::log(b"Make sure you don't overflow, my friend.");
 }
 
 /*
  * the rest of this file sets up unit tests
  * to run these, the command will be:
- * cargo test --package rust-counter-tutorial -- --nocapture
- * Note: 'rust-counter-tutorial' comes from cargo.toml's 'name' key
+ * cargo test -- --nocapture
  */
 
 // use the attribute below for unit tests
@@ -106,12 +159,11 @@ mod tests {
     use near_sdk::{testing_env, VMContext};
 
     // part of writing unit tests is setting up a mock context
-    // in this example, this is only needed for env::log in the contract
     // this is also a useful list to peek at when wondering what's available in env::*
-    fn get_context(input: Vec<u8>, is_view: bool) -> VMContext {
+    fn get_context(input: Vec<u8>, is_view: bool, signer: AccountId) -> VMContext {
         VMContext {
             current_account_id: "alice.testnet".to_string(),
-            signer_account_id: "robert.testnet".to_string(),
+            signer_account_id: signer,
             signer_account_pk: vec![0, 1, 2],
             predecessor_account_id: "jane.testnet".to_string(),
             input,
@@ -130,39 +182,60 @@ mod tests {
     }
 
     // mark individual unit tests with #[test] for them to be registered and fired
+    // unlike other frameworks, the function names don't need to be special or have "test" in it
     #[test]
     fn increment() {
         // set up the mock context into the testing environment
-        let context = get_context(vec![], false);
+        let context = get_context(vec![], false, "robert.testnet".to_string());
         testing_env!(context);
         // instantiate a contract variable with the counter at zero
-        let mut contract = Counter { val: 0 };
+        let mut contract = Counter::new();
         contract.increment();
-        println!("Value after increment: {}", contract.get_num());
+        // we can do println! in tests, but reminder to use env::log outside of tests
+        println!("Value after increment: {}", contract.get_num("robert.testnet".to_string()));
         // confirm that we received 1 when calling get_num
-        assert_eq!(1, contract.get_num());
+        assert_eq!(1, contract.get_num("robert.testnet".to_string()));
     }
 
     #[test]
     fn decrement() {
-        let context = get_context(vec![], false);
+        let context = get_context(vec![], false, "robert.testnet".to_string());
         testing_env!(context);
-        let mut contract = Counter { val: 0 };
+        let mut contract = Counter::new();
         contract.decrement();
-        println!("Value after decrement: {}", contract.get_num());
+        println!("Value after decrement: {}", contract.get_num("robert.testnet".to_string()));
         // confirm that we received -1 when calling get_num
-        assert_eq!(-1, contract.get_num());
+        assert_eq!(-1, contract.get_num("robert.testnet".to_string()));
     }
 
     #[test]
     fn increment_and_reset() {
-        let context = get_context(vec![], false);
+        let context = get_context(vec![], false, "robert.testnet".to_string());
         testing_env!(context);
-        let mut contract = Counter { val: 0 };
+        let mut contract = Counter::new();
         contract.increment();
         contract.reset();
-        println!("Value after reset: {}", contract.get_num());
-        // confirm that we received -1 when calling get_num
-        assert_eq!(0, contract.get_num());
+        println!("Value after reset: {}", contract.get_num("robert.testnet".to_string()));
+        // confirm that we received 0 after reset
+        assert_eq!(0, contract.get_num("robert.testnet".to_string()));
+    }
+
+    #[test]
+    fn use_two_accounts_and_verify() {
+        let context_robert = get_context(vec![], false, "robert.testnet".to_string());
+        let context_alice = get_context(vec![], false, "alice.testnet".to_string());
+        // increment twice on robert's account
+        testing_env!(context_robert);
+        let mut contract = Counter::new();
+        contract.increment();
+        contract.increment();
+        // decrement once on alice's account
+        testing_env!(context_alice);
+        contract.decrement();
+        // confirm values per account
+        println!("Value from robert.testnet's account: {}", contract.get_num("robert.testnet".to_string()));
+        println!("Value from alice.testnet's account: {}", contract.get_num("alice.testnet".to_string()));
+        assert_eq!(2, contract.get_num("robert.testnet".to_string()));
+        assert_eq!(-1, contract.get_num("alice.testnet".to_string()));
     }
 }

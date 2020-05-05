@@ -17,7 +17,8 @@ wee_alloc = "0.4.5"
 [profile.release]
 codegen-units = 1
 # Tell `rustc` to optimize for small code size.
-opt-level = "z"
+# https://rustwasm.github.io/docs/book/reference/code-size.html#optimizing-builds-for-code-size
+opt-level = "s"
 lto = true
 debug = false
 panic = "abort"

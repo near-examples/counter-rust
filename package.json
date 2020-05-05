@@ -4,18 +4,21 @@
   "version": "0.0.1",
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
-    "build": "cd contract && cargo build --target wasm32-unknown-unknown --release",
-    "postbuild": "cp contract/target/wasm32-unknown-unknown/release/rust_counter_tutorial.wasm ./out/main.wasm",
-    "deploy:contract": "near deploy",
+    "build:counter": "cd contracts/counter && cargo build --target wasm32-unknown-unknown --release",
+    "postbuild:counter": "cp contracts/counter/target/wasm32-unknown-unknown/release/rust_counter_tutorial.wasm ./out/",
+    "build:donation": "cd contracts/donation && cargo build --target wasm32-unknown-unknown --release",
+    "postbuild:donation": "cp contracts/donation/target/wasm32-unknown-unknown/release/rust_donation_tutorial.wasm ./out/",
+    "build": "yarn build:counter && yarn build:donation",
     "deploy:pages": "gh-pages -d src",
-    "deploy": "yarn build && yarn deploy:contract",
+    "deploy": "echo \"Please see Deploying-contracts.md in this directory.\"",
     "deploy:dev": "yarn build && near dev-deploy",
     "dev": "yarn deploy:dev && yarn start:dev",
-    "prestart": "yarn build && yarn deploy:contract",
+    "prestart": "yarn build && yarn deploy:contracts",
     "start": "parcel src/index.html",
     "start:dev": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
-    "test:cargo": "cd contract && cargo test -- --nocapture",
-    "test": "yarn build && jest && yarn test:cargo"
+    "test:counter": "cd contracts/counter && cargo test -- --nocapture",
+    "test:donation": "cd contracts/donation && cargo test -- --nocapture",
+    "test": "yarn build && yarn test:counter && yarn test:donation"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",

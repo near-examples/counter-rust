@@ -37,7 +37,7 @@ fn simulate_increment() {
     // Call the increment function
     call!(
         root,
-        counter.increment()
+        counter.do_operation('+', 1)
     ).assert_success();
 
     current_num = view!(
@@ -49,8 +49,8 @@ fn simulate_increment() {
     // Now use the non-macro approach to increment the number.
     root.call(
         counter.account_id(),
-        "increment",
-        &json!({})
+        "do_operation",
+        &json!({"op": '+', "value": 1})
             .to_string()
             .into_bytes(),
         DEFAULT_GAS,

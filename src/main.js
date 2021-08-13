@@ -21,7 +21,7 @@ async function connect(nearConfig) {
     // View methods are read-only – they don't modify the state, but usually return some value
     viewMethods: ['get_num'],
     // Change methods can modify the state, but you don't receive the returned value when called
-    changeMethods: ['increment', 'decrement', 'reset'],
+    changeMethods: ['do_operation', 'reset'],
     // Sender is the account ID to initialize transactions.
     // getAccountId() will return empty string if user is still unauthorized
     sender: window.walletConnection.getAccountId()
@@ -72,13 +72,13 @@ document.querySelector('#plus').addEventListener('click', () => {
   document.querySelectorAll('button').forEach(button => button.disabled = true);
   document.querySelector('#show').classList.replace('number','loader');
   document.querySelector('#show').innerText = '';
-  contract.increment().then(updateUI);
+  contract.do_operation({op: '+', value: 1}).then(updateUI);
 });
 document.querySelector('#minus').addEventListener('click', () => {
   document.querySelectorAll('button').forEach(button => button.disabled = true);
   document.querySelector('#show').classList.replace('number','loader');
   document.querySelector('#show').innerText = '';
-  contract.decrement().then(updateUI);
+  contract.do_operation({op: '-', value: 1}).then(updateUI);
 });
 document.querySelector('#a').addEventListener('click', () => {
   document.querySelectorAll('button').forEach(button => button.disabled = true);

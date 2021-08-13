@@ -39,41 +39,16 @@ impl Counter {
         return self.val;
     }
 
-    /// Increment the counter.
-    ///
-    /// Note, the parameter is "&mut self" as this function modifies state.
-    /// In the frontend (/src/main.js) this is added to the "changeMethods" array
-    /// using near-cli we can call this by:
-    ///
-    /// ```bash
-    /// near call counter.YOU.testnet increment --accountId donation.YOU.testnet
-    /// ```
-    pub fn increment(&mut self) {
-        // note: adding one like this is an easy way to accidentally overflow
-        // real smart contracts will want to have safety checks
-        // e.g. self.val = i8::wrapping_add(self.val, 1);
-        // https://doc.rust-lang.org/std/primitive.i8.html#method.wrapping_add
-        self.val += 1;
+    pub fn do_operation(&mut self, op: char, value: i8) {    
+        match op {
+            '+' => self.val += value,
+            '-' => self.val -= value,
+            _ => {
+                let unsupported_operation_message = format!("Contract supports only '+' and '-' operations. Passed: {}", op);
+                env::panic(unsupported_operation_message.as_bytes());
+            }
+        }
         let log_message = format!("Increased number to {}", self.val);
-        env::log(log_message.as_bytes());
-        after_counter_change();
-    }
-
-    /// Decrement (subtract from) the counter.
-    ///
-    /// In (/src/main.js) this is also added to the "changeMethods" array
-    /// using near-cli we can call this by:
-    ///
-    /// ```bash
-    /// near call counter.YOU.testnet decrement --accountId donation.YOU.testnet
-    /// ```
-    pub fn decrement(&mut self) {
-        // note: subtracting one like this is an easy way to accidentally overflow
-        // real smart contracts will want to have safety checks
-        // e.g. self.val = i8::wrapping_sub(self.val, 1);
-        // https://doc.rust-lang.org/std/primitive.i8.html#method.wrapping_sub
-        self.val -= 1;
-        let log_message = format!("Decreased number to {}", self.val);
         env::log(log_message.as_bytes());
         after_counter_change();
     }
@@ -132,7 +107,7 @@ mod tests {
         testing_env!(context.build());
         // instantiate a contract variable with the counter at zero
         let mut contract = Counter { val: 0 };
-        contract.increment();
+        contract.do_operation('+', 1);
         println!("Value after increment: {}", contract.get_num());
         // confirm that we received 1 when calling get_num
         assert_eq!(1, contract.get_num());
@@ -143,7 +118,7 @@ mod tests {
         let context = VMContextBuilder::new();
         testing_env!(context.build());
         let mut contract = Counter { val: 0 };
-        contract.decrement();
+        contract.do_operation('-', 1);
         println!("Value after decrement: {}", contract.get_num());
         // confirm that we received -1 when calling get_num
         assert_eq!(-1, contract.get_num());
@@ -154,7 +129,7 @@ mod tests {
         let context = VMContextBuilder::new();
         testing_env!(context.build());
         let mut contract = Counter { val: 0 };
-        contract.increment();
+        contract.do_operation('+', 1);
         contract.reset();
         println!("Value after reset: {}", contract.get_num());
         // confirm that we received -1 when calling get_num

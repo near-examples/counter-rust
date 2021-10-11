@@ -1,4 +1,4 @@
-//pub use near_sdk::json_types::{Base64VecU8, ValidAccountId, WrappedDuration, U64};
+pub use near_sdk::json_types::{Base64VecU8, U64};
 use near_sdk::serde_json::json;
 use near_sdk_sim::{call, view, deploy, init_simulator, ContractAccount, UserAccount, DEFAULT_GAS};
 use rust_counter_tutorial::CounterContract;
@@ -11,7 +11,7 @@ fn init() -> (UserAccount, ContractAccount<CounterContract>) {
     let root = init_simulator(None);
 
     // Deploy the compiled Wasm bytes
-    let counter= deploy! {
+    let counter: ContractAccount<CounterContract> = deploy! {
          contract: CounterContract,
          contract_id: "counter".to_string(),
          bytes: &COUNTER_BYTES,

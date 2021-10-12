@@ -103,7 +103,6 @@ fn after_counter_change() {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use near_sdk::MockedBlockchain;
     use near_sdk::testing_env;
     use near_sdk::test_utils::VMContextBuilder;
     use near_sdk::AccountId;

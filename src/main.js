@@ -98,7 +98,7 @@ document.querySelector('#d').addEventListener('click', () => {
 
 // Log in user using NEAR Wallet on "Sign In" button click
 document.querySelector('.sign-in .btn').addEventListener('click', () => {
-  walletConnection.requestSignIn(nearConfig.contractName, 'Rust Counter Example');
+  walletConnection.requestSignIn({contractId: nearConfig.contractName, methodNames: [contract.increment.name, contract.decrement.name, contract.reset.name]}, 'Rust Counter Example');
 });
 
 document.querySelector('.sign-out .btn').addEventListener('click', () => {

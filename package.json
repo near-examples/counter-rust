@@ -15,7 +15,7 @@
     "start": "parcel src/index.html",
     "start:dev": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
     "test:cargo": "cd contract && cargo test -- --nocapture",
-    "test": "yarn build && yarn test:cargo && jest"
+    "test": "near-workspaces-ava"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
@@ -23,6 +23,7 @@
     "jest": "~25.2.0",
     "jest-environment-node": "~26.0.1",
     "near-cli": "^1.0.1",
+    "near-workspaces-ava": "^1.0.0",
     "nodemon": "~2.0.4",
     "parcel-bundler": "~1.12.4"
   },

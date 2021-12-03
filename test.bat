@@ -3,4 +3,4 @@
 :: and only runs the tests in the `near-workspaces` folder.
 cd near-workspaces
 npm install
-npm run testava -- %*
+npm run test -- %*

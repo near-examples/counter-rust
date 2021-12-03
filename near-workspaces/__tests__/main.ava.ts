@@ -11,26 +11,26 @@ const workspace = Workspace.init(async ({root}) => {
 });
 
 
-workspace.test('test-increment', async (test, {contract, root}) => {
+workspace.test('test-increment', async (testava, {contract, root}) => {
   await root.call(contract, 'increment', {});
-  test.is(
+  testava.is(
     await contract.view('get_num'),
     1,
   );
 });
 
-workspace.test('test-decrement', async (test, {contract, root}) => {
+workspace.test('test-decrement', async (testava, {contract, root}) => {
   await root.call(contract, 'decrement', {});
-  test.is(
+  testava.is(
     await contract.view('get_num'),
     -1,
   );
 });
 
-workspace.test('test-increment-and-reset', async (test, {contract, root}) => {
+workspace.test('test-increment-and-reset', async (testava, {contract, root}) => {
   await root.call(contract, 'increment', {});
   await root.call(contract, 'reset', {});
-  test.is(
+  testava.is(
     await contract.view('get_num'),
     0,
   );

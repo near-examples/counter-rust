@@ -3,8 +3,6 @@ describe('Token', function () {
   let contract;
   let accountId;
 
-  jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
-
   beforeAll(async function () {
     console.log('nearConfig', nearConfig);
     near = await nearlib.connect(nearConfig);

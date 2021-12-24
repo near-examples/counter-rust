@@ -1,2 +1,0 @@
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/typenum-80e2a575080de4ac/out/consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/typenum-80e2a575080de4ac/out/op.rs

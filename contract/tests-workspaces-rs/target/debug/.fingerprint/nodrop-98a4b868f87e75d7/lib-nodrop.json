@@ -1,1 +1,0 @@
-{"rustc":3190981394957179056,"features":"[]","target":268304209080822193,"profile":8344124108420085910,"path":11981128272602856603,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"debug/.fingerprint/nodrop-98a4b868f87e75d7/dep-lib-nodrop"}}],"rustflags":["-C","link-args=-s"],"metadata":1865549453532055031,"config":2202906307356721367,"compile_kind":0}

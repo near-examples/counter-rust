@@ -15,12 +15,14 @@ async fn setup() -> anyhow::Result<(workspaces::Worker<impl DevNetwork>, workspa
 
 #[tokio::test]
 async fn increment() -> anyhow::Result<()> {
+    println!("Starting increment test");
     let (worker, contract) = setup().await?;
 
-    contract
+    let status = contract
         .call(&worker, "increment")
         .transact()
         .await?;
+    println!("status: {:?}", status);
     let result: i8 = contract
         .view(
             &worker,
@@ -36,12 +38,14 @@ async fn increment() -> anyhow::Result<()> {
 
 #[tokio::test]
 async fn decrement() -> anyhow::Result<()> {
+    println!("Starting decrement test");
     let (worker, contract) = setup().await?;
 
-    contract
+    let status = contract
         .call(&worker, "decrement")
         .transact()
         .await?;
+    println!("status: {:?}", status);
     let result: i8 = contract
         .view(
             &worker,
@@ -57,16 +61,19 @@ async fn decrement() -> anyhow::Result<()> {
 
 #[tokio::test]
 async fn increment_and_reset() -> anyhow::Result<()> {
+    println!("Starting increment_and_reset test");
     let (worker, contract) = setup().await?;
 
-    contract
+    let status = contract
         .call(&worker, "increment")
         .transact()
         .await?;
-    contract
+    println!("status: {:?}", status);
+    let status = contract
         .call(&worker, "reset")
         .transact()
         .await?;
+    println!("status: {:?}", status);
     let result: i8 = contract
         .view(
             &worker,

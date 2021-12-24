@@ -13,7 +13,7 @@ async fn setup() -> anyhow::Result<(workspaces::Worker<impl DevNetwork>, workspa
     Ok((worker, contract))
 }
 
-#[tokio::main]
+#[tokio::test]
 async fn increment() -> anyhow::Result<()> {
     let (worker, contract) = setup().await?;
 
@@ -34,7 +34,7 @@ async fn increment() -> anyhow::Result<()> {
     Ok(())
 }
 
-#[tokio::main]
+#[tokio::test]
 async fn decrement() -> anyhow::Result<()> {
     let (worker, contract) = setup().await?;
 
@@ -55,7 +55,7 @@ async fn decrement() -> anyhow::Result<()> {
     Ok(())
 }
 
-#[tokio::main]
+#[tokio::test]
 async fn increment_and_reset() -> anyhow::Result<()> {
     let (worker, contract) = setup().await?;
 

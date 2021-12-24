@@ -1,0 +1,11 @@
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/signature-1605276e414eb127.rmeta: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/error.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signature.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signer.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/verifier.rs
+
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/libsignature-1605276e414eb127.rlib: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/error.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signature.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signer.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/verifier.rs
+
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/signature-1605276e414eb127.d: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/error.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signature.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signer.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/verifier.rs
+
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/lib.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/error.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signature.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/signer.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/signature-1.4.0/src/verifier.rs:

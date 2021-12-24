@@ -1,0 +1,1 @@
+{"rustc":3190981394957179056,"features":"[\"std\"]","target":2709041430195671023,"profile":8344124108420085910,"path":14963706039257117574,"deps":[],"local":[{"CheckDepInfo":{"dep_info":"debug/.fingerprint/crunchy-41366e562fcf58d8/dep-build-script-build-script-build"}}],"rustflags":["-C","link-args=-s"],"metadata":5553159513701433177,"config":2202906307356721367,"compile_kind":0}

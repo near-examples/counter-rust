@@ -1,0 +1,12 @@
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/ahash-87c35c5b9c3d74b0.rmeta: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/convert.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/fallback_hash.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/operations.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/random_state.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/specialize.rs
+
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/libahash-87c35c5b9c3d74b0.rlib: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/convert.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/fallback_hash.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/operations.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/random_state.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/specialize.rs
+
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/ahash-87c35c5b9c3d74b0.d: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/convert.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/fallback_hash.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/operations.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/random_state.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/specialize.rs
+
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/lib.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/convert.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/fallback_hash.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/operations.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/random_state.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/ahash-0.4.7/src/specialize.rs:

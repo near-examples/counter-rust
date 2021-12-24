@@ -1,0 +1,61 @@
+cargo:rerun-if-env-changed=BZIP2_NO_PKG_CONFIG
+cargo:rerun-if-env-changed=PKG_CONFIG_x86_64-apple-darwin
+cargo:rerun-if-env-changed=PKG_CONFIG_x86_64_apple_darwin
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG
+cargo:rerun-if-env-changed=PKG_CONFIG
+cargo:rerun-if-env-changed=BZIP2_STATIC
+cargo:rerun-if-env-changed=BZIP2_DYNAMIC
+cargo:rerun-if-env-changed=PKG_CONFIG_ALL_STATIC
+cargo:rerun-if-env-changed=PKG_CONFIG_ALL_DYNAMIC
+cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64-apple-darwin
+cargo:rerun-if-env-changed=PKG_CONFIG_PATH_x86_64_apple_darwin
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG_PATH
+cargo:rerun-if-env-changed=PKG_CONFIG_PATH
+cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64-apple-darwin
+cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR_x86_64_apple_darwin
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG_LIBDIR
+cargo:rerun-if-env-changed=PKG_CONFIG_LIBDIR
+cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64-apple-darwin
+cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR_x86_64_apple_darwin
+cargo:rerun-if-env-changed=HOST_PKG_CONFIG_SYSROOT_DIR
+cargo:rerun-if-env-changed=PKG_CONFIG_SYSROOT_DIR
+TARGET = Some("x86_64-apple-darwin")
+OPT_LEVEL = Some("0")
+HOST = Some("x86_64-apple-darwin")
+CC_x86_64-apple-darwin = None
+CC_x86_64_apple_darwin = None
+HOST_CC = None
+CC = None
+CFLAGS_x86_64-apple-darwin = None
+CFLAGS_x86_64_apple_darwin = None
+HOST_CFLAGS = None
+CFLAGS = None
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("true")
+CARGO_CFG_TARGET_FEATURE = Some("fxsr,sse,sse2,sse3,ssse3")
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/blocksort.o" "-c" "bzip2-1.0.8/blocksort.c"
+exit status: 0
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/huffman.o" "-c" "bzip2-1.0.8/huffman.c"
+exit status: 0
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/crctable.o" "-c" "bzip2-1.0.8/crctable.c"
+exit status: 0
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/randtable.o" "-c" "bzip2-1.0.8/randtable.c"
+exit status: 0
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/compress.o" "-c" "bzip2-1.0.8/compress.c"
+exit status: 0
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/decompress.o" "-c" "bzip2-1.0.8/decompress.c"
+exit status: 0
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-fno-omit-frame-pointer" "-m64" "-arch" "x86_64" "-I" "bzip2-1.0.8" "-D_FILE_OFFSET_BITS=64" "-DBZ_NO_STDIO" "-o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/bzlib.o" "-c" "bzip2-1.0.8/bzlib.c"
+exit status: 0
+AR_x86_64-apple-darwin = None
+AR_x86_64_apple_darwin = None
+HOST_AR = None
+AR = None
+running: "ar" "cq" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/libbz2.a" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/blocksort.o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/huffman.o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/crctable.o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/randtable.o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/compress.o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/decompress.o" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/bzip2-1.0.8/bzlib.o"
+exit status: 0
+running: "ar" "s" "/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib/libbz2.a"
+exit status: 0
+cargo:rustc-link-lib=static=bz2
+cargo:rustc-link-search=native=/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/lib
+cargo:root=/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out
+cargo:include=/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/build/bzip2-sys-6977d38f05ec3395/out/include

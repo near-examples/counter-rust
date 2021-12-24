@@ -1,0 +1,10 @@
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/near_jsonrpc_client-69dd20dc607ded71.rmeta: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/auth.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/errors.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/methods.rs
+
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/libnear_jsonrpc_client-69dd20dc607ded71.rlib: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/auth.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/errors.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/methods.rs
+
+/Users/nino/projects/rust-counter-workspaces-rs/rust-counter/contract/tests-workspaces-rs/target/debug/deps/near_jsonrpc_client-69dd20dc607ded71.d: /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/lib.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/auth.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/errors.rs /Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/methods.rs
+
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/lib.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/auth.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/errors.rs:
+/Users/nino/.cargo/registry/src/github.com-1ecc6299db9ec823/near-jsonrpc-client-0.1.0/src/methods.rs:

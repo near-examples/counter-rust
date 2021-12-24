@@ -15,14 +15,13 @@ async fn setup() -> anyhow::Result<(workspaces::Worker<impl DevNetwork>, workspa
 
 #[tokio::test]
 async fn increment() -> anyhow::Result<()> {
-    println!("Starting increment test");
     let (worker, contract) = setup().await?;
 
     let status = contract
         .call(&worker, "increment")
         .transact()
         .await?;
-    println!("status: {:?}", status);
+    println!("increment result status: {:?}", status);
     let result: i8 = contract
         .view(
             &worker,
@@ -32,20 +31,20 @@ async fn increment() -> anyhow::Result<()> {
         )
     .await?
     .json()?;
+
     assert_eq!(result, 1);
     Ok(())
 }
 
 #[tokio::test]
 async fn decrement() -> anyhow::Result<()> {
-    println!("Starting decrement test");
     let (worker, contract) = setup().await?;
 
     let status = contract
         .call(&worker, "decrement")
         .transact()
         .await?;
-    println!("status: {:?}", status);
+    println!("decrement result status: {:?}", status);
     let result: i8 = contract
         .view(
             &worker,
@@ -55,25 +54,25 @@ async fn decrement() -> anyhow::Result<()> {
         )
     .await?
     .json()?;
+
     assert_eq!(result, -1);
     Ok(())
 }
 
 #[tokio::test]
 async fn increment_and_reset() -> anyhow::Result<()> {
-    println!("Starting increment_and_reset test");
     let (worker, contract) = setup().await?;
 
-    let status = contract
+    let status1 = contract
         .call(&worker, "increment")
         .transact()
         .await?;
-    println!("status: {:?}", status);
-    let status = contract
+    println!("increment_and_reset result status1: {:?}", status1);
+    let status2 = contract
         .call(&worker, "reset")
         .transact()
         .await?;
-    println!("status: {:?}", status);
+    println!("increment_and_reset result status2: {:?}", status2);
     let result: i8 = contract
         .view(
             &worker,
@@ -83,6 +82,7 @@ async fn increment_and_reset() -> anyhow::Result<()> {
         )
     .await?
     .json()?;
+    
     assert_eq!(result, 0);
     Ok(())
 }

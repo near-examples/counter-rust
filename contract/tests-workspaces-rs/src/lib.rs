@@ -1,10 +1,10 @@
 #![cfg(test)]
 
-use serde_json::json;
 use workspaces::prelude::*;
-use workspaces::{Worker, DevNetwork, Contract};
+use workspaces::DevNetwork;
 
-const COUNTER_WASM_FILEPATH: &str = "../../out/main.wasm";
+
+const COUNTER_WASM_FILEPATH: &str = "./compiled-files/main.wasm";
 
 async fn setup() -> anyhow::Result<(workspaces::Worker<impl DevNetwork>, workspaces::Contract)> {
     let worker = workspaces::sandbox();

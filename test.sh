@@ -5,4 +5,4 @@
 # and only runs the tests in the `near-workspaces` folder.
 cd tests-ava
 npm install
-npm run test --verbse $@ # pass along any CLI flags, such as `--verbose`
+npm run test --verbose $@ # pass along any CLI flags, such as `--verbose`

@@ -2,22 +2,19 @@
 name = "counter_contract"
 version = "1.0.0"
 authors = ["Near Inc <hello@near.org>"]
-edition = "2018"
+edition = "2021"
 
 [lib]
-crate-type = ["cdylib", "rlib"]
+crate-type = ["cdylib"]
 
 [dependencies]
-near-sdk = "4.0.0-pre.7"
-uint = { version = "0.8.3", default-features = false }
+near-sdk = "4.0.0"
 
 [dev-dependencies]
-near-sdk-sim = "4.0.0-pre.7"
-
-[profile.release]
-codegen-units = 1
-opt-level = "z"
-lto = true
-debug = false
-panic = "abort"
-overflow-checks = true
+anyhow = "1.0"
+near-units = "0.2.0"
+# arbitrary_precision enabled for u128 types that workspaces requires for Balance types
+serde_json = { version = "1.0", features = ["arbitrary_precision"] }
+tokio = { version = "1.18.1", features = ["full"] }
+workspaces = "0.3.0"
+lazy-static-include = "3.1.2"

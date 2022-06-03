@@ -5,7 +5,6 @@
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{log, near_bindgen};
 
-
 #[near_bindgen]
 #[derive(Default, BorshDeserialize, BorshSerialize)]
 pub struct Counter {
@@ -16,7 +15,7 @@ pub struct Counter {
 impl Counter {
     /// Public method: Returns the counter value.
     pub fn get_num(&self) -> i8 {
-        return self.val;
+        self.val
     }
 
     /// Public method: Increment the counter.

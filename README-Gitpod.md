@@ -5,12 +5,35 @@ This README is specific to Gitpod and this example. For local development, pleas
 
 ## Description
 
+This contract implements simple counter backed by storage on blockchain.
+Contract in `contract/src/lib.rs` provides methods to increment / decrement counter and get its current value or reset.
+
+### Starting the Counter
+
 In Gitpod, the counter will start automatically. Please look in the terminal for a link to follow.
 
-This contract implements simple counter backed by storage on blockchain.
-Contract in `contract/src/lib.rs` provides methods to increment / decrement counter and get it's current value or reset.
+If you see a popup that says "A service is available on port 1234", click "Open Browser" button.  *The "Open Preview" button will open the preview pane but it will not be able to connect to the wallet.*
 
-Plus and minus buttons increase and decrease value correspondingly. When button L is toggled, a little light turns on, just for fun. RS button is for reset. LE and RE buttons to let the robot wink at you.
+
+
+### Operation of the Counter
+
++ `+` and `-` buttons increase and decrease value correspondingly.
++ `L` button turns on the light, just for fun.
++ `RS` button resets the counter
++ Use the `LE` and `RE` buttons then observe the robot's face ;)
+
+
+### Viewing Transaction Logs
+
+To view transaction logs for blockchain activity, see the Activity pane of the wallet you connected to the counter. It will look something like:
+
+```
+Called method: reset in contract: @dev-1595673156644   8 minutes ago  Succeeded
+```
+
+You can also view the actual transactions on a block explorer, for example https://explorer.testnet.near.org/ under Recent Transactions.
+
 
 ## To Test
 
@@ -20,6 +43,8 @@ cargo test -- --nocapture
 ```
 
 ## To Explore
+
+Explore the following files to see the code which runs the counter:
 
 - `contract/src/lib.rs` for the contract code
 - `src/index.html` for the front-end HTML

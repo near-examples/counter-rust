@@ -70,11 +70,11 @@ In the project root, login with `near-cli` by following the instructions after t
 near login
 ```
 
-Modify the top of `src/config.js`, changing the `CONTRACT_NAME` to be the NEAR account that was just used to log in.
+Modify the top of `frontend/assets/js/near/config.js`, changing the `CONTRACT_NAME` to be the NEAR account that was just used to log in.
 
 ```javascript
 …
-const CONTRACT_NAME = 'YOUR_ACCOUNT_NAME_HERE'; /* TODO: fill this in! */
+const CONTRACT_NAME = process.env.CONTRACT_NAME || 'change_this_account'; /* TODO: Change this to the deployed account */
 …
 ```
 
@@ -103,3 +103,10 @@ yarn test
 cd contract
 cargo doc --no-deps --open
 ```
+
+## Possible Errors
+```
+env-cmd: not found
+```
+- upgrade your node to >=16
+- yarn add env-cmd

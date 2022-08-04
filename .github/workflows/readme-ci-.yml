@@ -1,0 +1,38 @@
+name: Readme CI
+on: 
+  repository_dispatch:
+    types: [tests-report]
+  push:
+jobs:
+  readme-ci:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest] # mac-os in development
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v2
+      - name: Install Node
+        uses: actions/setup-node@v2
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+      - name: Install dependencies
+        run: yarn
+      - name: Install near-cli
+        run: npm install near-cli -g
+      - name: Install JQ (for key injection)
+        uses: sergeysova/jq-action@v2
+      - name: Simulate NEAR login
+        env:
+          NEAR_NETWORK: localnet
+          NEAR_ACCOUNT_ID: ${{ secrets.NEAR_ACCOUNT_ID }}
+          NEAR_PUBLIC_KEY: ${{ secrets.NEAR_PUBLIC_KEY }}
+          NEAR_PRIVATE_KEY: ${{ secrets.NEAR_PRIVATE_KEY }}
+        run: echo ""  # TODO: inject keys from secrets using jq
+      - name Run App
+        env:
+          CONTRACT_NAME: ${{ secrets.CONTRACT_NAME }}
+        run: yarn start

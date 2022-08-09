@@ -9,7 +9,6 @@ jobs:
       matrix:
         platform: [ubuntu-latest] # mac-os in development
     runs-on: ${{ matrix.platform }}
-    timeout-minutes: 9
     steps:
       - name: Checkout branch
         uses: actions/checkout@v2
@@ -34,7 +33,6 @@ jobs:
       #     NEAR_PRIVATE_KEY: ${{ secrets.NEAR_PRIVATE_KEY }}
       #   run: echo ""  # TODO: inject keys from secrets using jq
       - name: Run App
-        timeout: 
         env:
           NEAR_ENV: ci 
           IS_GITHUB_ACTION: true

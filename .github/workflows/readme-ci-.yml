@@ -39,4 +39,4 @@ jobs:
           NEAR_ENV: ci 
           IS_GITHUB_ACTION: true
           CONTRACT_NAME: test_account
-        run: timeout 3 yarn start || code=$?; if [[ $code -ne 3 ]]; then exit 1; fi
+        run: yarn start && exit 1

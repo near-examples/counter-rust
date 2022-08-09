@@ -37,4 +37,4 @@ jobs:
           NEAR_ENV: ci 
           IS_GITHUB_ACTION: true
           CONTRACT_NAME: test_account
-        run: echo $PWD && bash ./neardev/scripts/run-app.sh
+        run: bash .github/scripts/run_app.sh

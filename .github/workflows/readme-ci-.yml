@@ -33,7 +33,6 @@ jobs:
       #     NEAR_PRIVATE_KEY: ${{ secrets.NEAR_PRIVATE_KEY }}
       #   run: echo ""  # TODO: inject keys from secrets using jq
       - name: Run App
-        timeout: 
         env:
           NEAR_ENV: ci 
           IS_GITHUB_ACTION: true

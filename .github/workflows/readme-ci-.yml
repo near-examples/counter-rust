@@ -9,7 +9,6 @@ jobs:
       matrix:
         platform: [ubuntu-latest] # mac-os in development
     runs-on: ${{ matrix.platform }}
-    timeout-minutes: 9
     steps:
       - name: Checkout branch
         uses: actions/checkout@v2
@@ -39,4 +38,4 @@ jobs:
           NEAR_ENV: ci 
           IS_GITHUB_ACTION: true
           CONTRACT_NAME: test_account
-        run: yarn start & sleep 10; exit 1
+        run: yarn start && sleep 10; exit 1

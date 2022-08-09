@@ -7,7 +7,7 @@
     "build": "npm run build:rustup && npm run build:cpwasm",
       "build:rustup": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release",
       "build:cpwasm": "mkdir -p out && rm -f ./out/main.wasm && cp ./contract/target/wasm32-unknown-unknown/release/counter_contract.wasm ./out/main.wasm",
-    "deploy": "npm run build && near dev-deploy",
+    "deploy": "npm run build && near dev-deploy --yes",
     "start": "npm run deploy && echo The app is starting! && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
     "dev": "nodemon --watch contract -e ts --exec \"npm run start\"",
     "test": "npm run build && npm run test:unit && npm run test:integration",

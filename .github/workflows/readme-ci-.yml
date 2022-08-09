@@ -23,16 +23,18 @@ jobs:
         run: yarn
       - name: Install near-cli
         run: npm install near-cli -g
-      - name: Install JQ (for key injection)
-        uses: sergeysova/jq-action@v2
-      - name: Simulate NEAR login
+      # - name: Install JQ (for key injection)
+      #   uses: sergeysova/jq-action@v2
+      # - name: Simulate NEAR login
+      #   env:
+      #     NEAR_NETWORK: localnet
+      #     NEAR_ACCOUNT_ID: ${{ secrets.NEAR_ACCOUNT_ID }}
+      #     NEAR_PUBLIC_KEY: ${{ secrets.NEAR_PUBLIC_KEY }}
+      #     NEAR_PRIVATE_KEY: ${{ secrets.NEAR_PRIVATE_KEY }}
+      #   run: echo ""  # TODO: inject keys from secrets using jq
+      - name: Run App
         env:
-          NEAR_NETWORK: localnet
-          NEAR_ACCOUNT_ID: ${{ secrets.NEAR_ACCOUNT_ID }}
-          NEAR_PUBLIC_KEY: ${{ secrets.NEAR_PUBLIC_KEY }}
-          NEAR_PRIVATE_KEY: ${{ secrets.NEAR_PRIVATE_KEY }}
-        run: echo ""  # TODO: inject keys from secrets using jq
-      - name Run App
-        env:
-          CONTRACT_NAME: ${{ secrets.CONTRACT_NAME }}
+          NEAR_ENV: ci 
+          IS_GITHUB_ACTION: true
+          CONTRACT_NAME: test_account
         run: yarn start

@@ -37,4 +37,4 @@ jobs:
           NEAR_ENV: ci 
           IS_GITHUB_ACTION: true
           CONTRACT_NAME: test_account
-        run: timeout 180 yarn start || code=$?; if [[ $code -ne 124 ]]; then exit 1; fi
+        run: val=$(timeout 180 yarn start); if [[ ! "$val" =~ .*"Server running at http://localhost:1234".* ]]; then exit 1; else exit 0; fi

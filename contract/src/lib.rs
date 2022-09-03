@@ -70,8 +70,14 @@ mod tests {
         contract.increment();
         contract.reset();
         assert_eq!(0, contract.get_num());
+
     }
 
+    #[test]
+     fn test_get_num(){
+	let mut contract = Counter { val: 45};
+	assert_eq!(45,contract.get_num());
+}
     #[test]
     #[should_panic]
     fn panics_on_overflow() {

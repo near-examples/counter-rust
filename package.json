@@ -5,26 +5,26 @@
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
     "build": "npm run build:rustup && npm run build:cpwasm",
-      "build:rustup": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release",
-      "build:cpwasm": "mkdir -p out && rm -f ./out/main.wasm && cp ./contract/target/wasm32-unknown-unknown/release/counter_contract.wasm ./out/main.wasm",
+    "build:rustup": "cd contract && rustup target add wasm32-unknown-unknown && cargo build --all --target wasm32-unknown-unknown --release",
+    "build:cpwasm": "mkdir -p out && rm -f ./out/main.wasm && cp ./contract/target/wasm32-unknown-unknown/release/counter_contract.wasm ./out/main.wasm",
     "deploy": "npm run build && printf 'y\n' | near dev-deploy",
     "start": "npm run deploy && echo The app is starting! && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open",
     "dev": "nodemon --watch contract -e ts --exec \"npm run start\"",
     "test": "npm run build && npm run test:unit && npm run test:integration",
-      "test:unit": "cd contract && cargo test",
-      "test:integration": "npm run test:integration:ts && npm run test:integration:rs",
-        "test:integration:ts": "ava --verbose",
-        "test:integration:rs": "cd integration-tests/rs && cargo run --example integration-tests"
+    "test:unit": "cd contract && cargo test",
+    "test:integration": "npm run test:integration:ts && npm run test:integration:rs",
+    "test:integration:ts": "ava --verbose",
+    "test:integration:rs": "cd integration-tests/rs && cargo run --example integration-tests"
   },
   "devDependencies": {
+    "ava": "^4.2.0",
     "env-cmd": "^10.1.0",
     "near-cli": "^3.2.0",
+    "near-workspaces": "^3.1.0",
     "nodemon": "~2.0.15",
     "parcel-bundler": "~1.12.5",
-    "near-workspaces": "^3.1.0",
-    "ava": "^4.2.0",
-    "typescript": "^4.6.4",
-    "ts-node": "^10.7.0"
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.4"
   },
   "dependencies": {
     "near-api-js": "^0.44.2",

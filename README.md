@@ -60,6 +60,10 @@ If you need to install `near-cli`:
 ```
 npm install near-cli -g
 ```
+or 
+```bash
+yarn global add near-cli
+```
 
 ## Login
 If you do not have a NEAR account, please create one with [NEAR Wallet](https://wallet.testnet.near.org).
@@ -70,7 +74,7 @@ In the project root, login with `near-cli` by following the instructions after t
 near login
 ```
 
-Modify the top of `src/config.js`, changing the `CONTRACT_NAME` to be the NEAR account that was just used to log in.
+Modify the top of `frontend/assets/js/near/config.js`, changing the `CONTRACT_NAME` to be the NEAR account that was just used to log in.
 
 ```javascript
 …
@@ -93,8 +97,8 @@ yarn test
 ## To Explore
 
 - `contract/src/lib.rs` for the contract code
-- `src/index.html` for the front-end HTML
-- `src/main.js` for the JavaScript front-end code and how to integrate contracts
+- `frontend/index.html` for the front-end HTML
+- `frontend/assets/js/main.js` for the JavaScript front-end code and how to integrate contracts
 - `src/test.js` for the JS tests for the contract
 
 ## To Build the Documentation
